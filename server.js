@@ -28,10 +28,13 @@ const schema = buildSchema(`
         getPosts: [Post],
         message : String,
     },
+    input UserInput{
+        name:String!,age:Int!,college:String!
+    },
 
     type Mutation{
         setMessage(newMessage: String): String,
-        createUser(name:String,age:Int,college:String): User
+        createUser(user : UserInput): User
     }
 `);
 
@@ -87,6 +90,12 @@ const root = {
         return message;
     },
     message: ()=> message,
+
+    //creating New User endpoint
+    createUser: function(args){
+        let newuser = args.user
+        return newuser;
+    }
 
 }
 
